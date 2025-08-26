@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Given 被贈與的未來</title>
+
+  <!-- favicon 與 manifest 設定 -->
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Given" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- 字體與樣式 -->
+  <link rel="stylesheet" href="css/animation.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Great+Vibes&family=Lexend:wght@100..900&family=Zen+Kurenaido&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a href="index.html" class="home-logo">
+    <img src="image/main-icon.png" alt="返回首頁" />
+  </a>
+  <a href="comic.html" class="backward-arrow" aria-label="上一頁">&#9664;</a>
+
+  <!-- 五個小框容器 -->
+  <div class="container">
+    <div class="item">
+        <a href="animation1.html">
+        <img src="image/animation1.jpg" alt="圖片1" />
+        </a>
+        <p>Given動畫</p> <!-- 放在 a 外面 -->
+    </div>
+    <div class="item">
+        <a href="animation2.html">
+        <img src="image/animation2.jpg" alt="圖片2" />
+        </a>
+        <p>Given反面的存在</p> <!-- 放在 a 外面 -->
+    </div>
+    <div class="item">
+        <a href="animation3.html">
+        <img src="image/animation3.jpg" alt="圖片3" />
+        </a>
+        <p>Given劇場版</p> <!-- 放在 a 外面 -->
+    </div>
+    <div class="item">
+        <a href="animation4.html">
+        <img src="image/animation4.jpg" alt="圖片4" />
+        </a>
+        <p>Given劇場版柊mix</p> <!-- 放在 a 外面 -->
+    </div>
+    <div class="item">
+        <a href="animation5.html">
+        <img src="image/animation5.jpg" alt="圖片5" />
+        </a>
+        <p>Given劇場版去海邊</p> <!-- 放在 a 外面 -->
+    </div>
+  </div>
+
+  <!-- 遮罩 -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- 漢堡選單 -->
+  <div class="hamburger" id="hamburger">&#9776;</div>
+
+  <!-- 導覽列 -->
+  <nav class="nav-menu" id="navMenu">
+    <ul>
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="mymainpage2.html">故事簡介</a></li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">功能導覽</a>
+        <ul class="submenu">
+          <li><a href="character.html">登場角色</a></li>
+          <li><a href="song.html">歌曲</a></li>
+          <li><a href="comic.html">漫畫/動畫</a></li>
+          <li><a href="bandprofile.html">樂團介紹</a></li>
+          <li><a href="author.html">作者帳號</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <script>
+    // 漢堡選單切換
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+
+    // 子選單滑動切換
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parentLi = this.parentElement;
+        const submenu = this.nextElementSibling;
+
+        if (submenu.style.display === 'block') {
+          submenu.style.maxHeight = '0';
+          submenu.style.display = 'none';
+          parentLi.classList.remove('active');
+        } else {
+          submenu.style.display = 'block';
+          submenu.style.maxHeight = submenu.scrollHeight + 'px';
+          parentLi.classList.add('active');
+        }
+      });
+    });
+
+    // 滾動進場動畫
+    const sections = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+
+    // 小框點擊放大顯示簡介
+    const items = document.querySelectorAll('.item');
+    const overlay = document.getElementById('overlay');
+
+    items.forEach(item => {
+      // 設定內容簡介文字
+      item.querySelector('p').textContent = item.dataset.desc;
+
+      item.addEventListener('click', () => {
+        if (item.classList.contains('active')) return;
+        items.forEach(i => i.classList.remove('active'));
+        overlay.classList.add('active');
+        item.classList.add('active');
+      });
+    });
+
+    overlay.addEventListener('click', () => {
+      items.forEach(i => i.classList.remove('active'));
+      overlay.classList.remove('active');
+    });
+  </script>
+</body>
+</html>

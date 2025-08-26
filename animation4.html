@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Given 被贈與的未來</title>
+
+  <!-- favicon 與 manifest 設定 -->
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Given" />
+  <link rel="manifest" href="site.webmanifest" />
+
+  <!-- 字體與樣式 -->
+  <link rel="stylesheet" href="css/animation4.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Great+Vibes&family=Lexend:wght@100..900&family=Zen+Kurenaido&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <a href="animation3.html" class="pre-arrow" title="前往上一頁">&#9668;</a>
+  <a href="animation3.html" class="up-arrow" title="前往上一頁">&#x25B2;</a>
+  <a href="index.html" class="home-logo">
+    <img src="image/main-icon.png" alt="返回首頁" />
+  </a>
+
+  <!-- 中央半透明框 -->
+  <div class="center-box">
+    <h1>Given劇場版--柊mix</h1>
+    <p>《Given劇場版--柊mix》主要描述玄柊兩人的感情線。玄純是從小就非常喜歡柊，而且持續的保護著柊;而柊是在因緣際會之下才漸漸明白其實他跟玄純早就已經越過了朋友的界線，也意識到自己是喜歡玄純的。這部的主要劇情是玄柊兩人去邀請立夏作為代打吉他手，並且希望藉由立夏身為真冬現任男友的身分一起把真冬前任男友的歌創作完成。而也正是因為了這首尚未完成的demo曲，讓柊意識到了自己對玄純的感情。玄柊兩人坦白對對方的心意後便過了一個火熱的夜晚，之後便在一起了。這部的性質偏向《Given劇場版--去海邊》的前章。</p>
+  </div>
+
+  <!-- 漢堡選單 -->
+  <div class="hamburger" id="hamburger">&#9776;</div>
+
+  <!-- 導覽列 -->
+  <nav class="nav-menu" id="navMenu">
+    <ul>
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="mymainpage2.html">故事簡介</a></li>
+      <li class="has-submenu">
+        <a href="#" class="submenu-toggle">功能導覽</a>
+        <ul class="submenu">
+          <li><a href="character.html">登場角色</a></li>
+          <li><a href="song.html">歌曲</a></li>
+          <li><a href="comic.html">漫畫/動畫</a></li>
+          <li><a href="bandprofile.html">樂團介紹</a></li>
+          <li><a href="author.html">作者帳號</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <script>
+    // 漢堡選單切換
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+
+    // 子選單滑動切換
+    document.querySelectorAll('.submenu-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parentLi = this.parentElement;
+        const submenu = this.nextElementSibling;
+
+        if (submenu.style.display === 'block') {
+          submenu.style.maxHeight = '0';
+          submenu.style.display = 'none';
+          parentLi.classList.remove('active');
+        } else {
+          submenu.style.display = 'block';
+          submenu.style.maxHeight = submenu.scrollHeight + 'px';
+          parentLi.classList.add('active');
+        }
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+    const centerBox = document.querySelector('.center-box');
+    if (centerBox) {
+        // 延遲一點點時間讓動畫更自然
+        setTimeout(() => {
+        centerBox.classList.add('visible');
+        }, 100);
+    }
+    });
+  </script>
+  <a href="animation5.html" class="next-arrow" title="前往下一頁">&#9658;</a>
+  <a href="animation5.html" class="down-arrow" title="前往下一頁">&#x25BC;</a>
+</body>
+</html>
