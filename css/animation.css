@@ -1,0 +1,194 @@
+/* 返回首頁圖標 */
+.home-logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.home-logo img {
+  width: 150px;
+  transition: transform 0.3s ease;
+}
+
+.home-logo img:hover {
+  transform: scale(1.1);
+}
+
+/* 大容器: 可視區高度 */
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 漢堡選單按鈕 */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  color: #000;
+  display: block;
+}
+
+/* 導覽選單樣式 */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  width: 200px;
+  height: 100%;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 60px 20px;
+}
+
+.nav-menu ul li {
+  margin: 20px 0;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+}
+
+.nav-menu.show {
+  transform: translateX(0);
+}
+
+/* 子選單（初始隱藏） */
+.has-submenu .submenu {
+  display: none; /* 始終渲染在 DOM 中 */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding-left: 15px;
+  list-style: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* 子選單展開 */
+.has-submenu.active .submenu {
+  max-height: 500px; /* 動畫展開用，設為足夠容納內容的高度 */
+  margin-top: 10px;
+  padding-top: 0;
+}
+
+.has-submenu > a::after {
+  content: ' ▼';
+  font-size: 0.8em;
+  margin-left: 5px;
+}
+
+/* 響應式：小螢幕顯示漢堡 */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+/* 背景圖響應式調整 */
+body {
+  margin: 0;
+  padding-top: 120px; /* 向下推60px，可自行調整 */
+  font-family: 'Zen Kurenaido', sans-serif;
+  background: url('../image/animationbackgroundtablet.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  overflow-x: hidden;
+}
+
+@media (max-width: 480px) {
+  body {
+    background: url('../image/animationbackgroundphone.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+}
+
+/* 容器及小框響應式範例 */
+.container {
+  max-width: 1200px;
+  margin: 80px auto 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* 小框 */
+.item {
+  display: block;
+  max-width: 300px;
+  flex: 1 1 180px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.item p {
+  margin: 10px;
+  color: #eee;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.item a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 滑鼠移上放大與顯示文字 */
+.item:hover {
+  transform: scale(1.2);
+  z-index: 999;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+.item:hover p {
+  opacity: 1;
+}
+
+/* 左側返回箭頭樣式 */
+.backward-arrow {
+  position: fixed;
+  top: 50%;
+  left: 20px;      /* 從右改成左側 */
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: rgb(87, 188, 255);
+  text-decoration: none;
+  z-index: 1001;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.backward-arrow:hover {
+  transform: translateY(-50%) scale(1.2);
+  color: #00aaff;
+}

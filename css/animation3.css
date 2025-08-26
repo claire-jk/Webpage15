@@ -1,0 +1,308 @@
+/* 返回首頁圖標 */
+.home-logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.home-logo img {
+  width: 150px;
+  transition: transform 0.3s ease;
+}
+
+.home-logo img:hover {
+  transform: scale(1.1);
+}
+
+/* 背景圖樣式：預設為桌機版 */
+body {
+  margin: 0;
+  font-family: 'Zen Kurenaido', sans-serif;
+  background: url('../image/animation3backgroundtablet.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+
+/* 手機背景 */
+@media (max-width: 480px) {
+  body {
+    background: url('../image/animation3backgroundphone.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+}
+
+/* 主容器 */
+.wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 中央半透明框（含進場動畫） */
+.center-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  width: 90%;
+  max-width: 500px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  text-align: center;
+  font-size: 1.2rem;
+  z-index: 1500;
+  opacity: 0;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.center-box.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+/* 左側實心箭頭按鈕（桌機） */
+.pre-arrow {
+  position: fixed;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  background-color: #69d2ff;
+  color: black;
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 1600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pre-arrow:hover {
+  background-color: #0586ff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* 右側實心箭頭按鈕（桌機） */
+.next-arrow {
+  position: fixed;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  background-color: #69d2ff;
+  color: black;
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 1600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-arrow:hover {
+  background-color: #0586ff;
+  transform: translateY(-50%) scale(1.1);
+}
+
+
+/* 手機版上下箭頭（預設隱藏） */
+.up-arrow,
+.down-arrow {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #69d2ff;
+  color: black;
+  font-size: 1.5rem;
+  padding: 8px 12px;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: none;
+}
+
+.up-arrow:hover,
+.down-arrow:hover {
+  background-color: #0586ff;
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* 漢堡選單按鈕 */
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  color: #000;
+  display: block;
+}
+
+/* 導覽選單樣式 */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  width: 200px;
+  height: 100%;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 2000; /* 提高層級以免被其他內容遮住 */
+}
+
+.nav-menu ul {
+  list-style: none;
+  padding: 60px 20px;
+}
+
+.nav-menu ul li {
+  margin: 20px 0;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+}
+
+.nav-menu.show {
+  transform: translateX(0);
+}
+
+/* 子選單 */
+.has-submenu .submenu {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding-left: 15px;
+  list-style: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.has-submenu.active .submenu {
+  max-height: 500px;
+  margin-top: 10px;
+}
+
+.has-submenu > a::after {
+  content: ' ▼';
+  font-size: 0.8em;
+  margin-left: 5px;
+}
+
+/* 響應式設定：手機專用 */
+@media (max-width: 480px) {
+  .hamburger {
+    display: block;
+  }
+
+  .center-box {
+    padding: 20px 20px;
+    font-size: 1rem;
+    max-width: 90%;
+  }
+
+  .home-logo img {
+    width: 120px;
+  }
+
+  /* 上箭頭 */
+  .up-arrow {
+    display: block;
+    position: fixed;
+    top: 30px; /* 改為顯示在上方 */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: #69d2ff;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 14px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1500;
+    animation: bounce-up 1.5s infinite; /* 如需不同方向可另設動畫 */
+  }
+
+  /* 下箭頭 */
+  .down-arrow {
+    display: block;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: #69d2ff;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 14px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1500;
+    animation: bounce 1.5s infinite;
+  }
+
+  /* hover 效果修正 transform 為 translateX */
+  .up-arrow:hover,
+  .down-arrow:hover {
+    background-color: #0586ff;
+    transform: translateX(-50%) scale(1.1);
+  }
+
+  .nav-menu {
+    z-index: 2000; /* ✅ 提高層級，確保手機上選單浮在其他元素上 */
+  }
+
+  /* ✅ 手機隱藏左右箭頭 */
+  .pre-arrow,
+  .next-arrow {
+    display: none;
+  }
+
+  /* 下箭頭動畫：往下彈跳 */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+  }
+
+  /* 上箭頭動畫：往上彈跳 */
+  @keyframes bounce-up {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(10px);
+    }
+  }
+}
